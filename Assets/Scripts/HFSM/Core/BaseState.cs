@@ -38,7 +38,7 @@ public abstract class BaseState : MonoBehaviour
 
     public BaseStateControl Control { get; set; }
 
-    public object ReceivedData { get; set; }
+    
 
     Dictionary<eTransition, eStateID> StateDic = new Dictionary<eTransition, eStateID>();
 

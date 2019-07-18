@@ -9,22 +9,22 @@ public abstract class BaseStateControl : MonoBehaviour
     /// <summary>
     /// 父状态分享数据给其所有子状态
     /// </summary>
-    public object SharedData { get; set; }
+    //public object SharedData { get; set; }
     /// <summary>
     /// 子状态返回数据给其父状态
     /// </summary>
-    public object ReceiveData { get; set; }
+    //public object ReceiveData { get; set; }
 
     public StateSystem stateSystem = null;
-    private UnityEnumEvent OnStateChangedEvent = null;
+    private static UnityEnumEvent OnStateChangedEvent = null;
 
-    public void AddStateChangedListener(UnityAction<eStateID> action)
+    public static void AddStateChangedListener(UnityAction<eStateID> action)
     {
         OnStateChangedEvent.RemoveListener(action);
         OnStateChangedEvent.AddListener(action);
     }
 
-    public void RemoveStateChangedListener(UnityAction<eStateID> action)
+    public static void RemoveStateChangedListener(UnityAction<eStateID> action)
     {
         OnStateChangedEvent.RemoveListener(action);
     }

@@ -13,13 +13,15 @@ public class Attack1State : BaseState
 
     public override void OnEnter()
     {
-        Debug.Log(Control.SharedData + "<color=red>" + StateID + "</color> ");
+        Debug.Log(NodeStateControl.SharedData + "<color=red>" + StateID + "</color> ");
     }
 
     public override void OnExit(out object _send)
     {
         _send = StateID;
-        Control.ReceiveData = "This data is <color=red>" + StateID + "</color> send to ";
+
+        NodeStateControl.ReceivedAction("This data is <color=red>" + StateID + "</color> send to ");
+
     }
 
     public override void OnDrive()
