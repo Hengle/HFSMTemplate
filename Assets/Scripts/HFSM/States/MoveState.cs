@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveState : BaseState
 {
-    BaseStateControl childStateControl;
-    private void Start()
+    StateControl childStateControl;
+    public override void OnStart()
     {
         StateID = eStateID.Move;
         AddTransition(eTransition.MoveToAttack, eStateID.Attack);
@@ -16,6 +16,11 @@ public class MoveState : BaseState
         Debug.Log("CurState is <color=red>" + StateID + "</color>, The last state I received was " + "<color=red>" + _receive + "</color>");
     }
 
+    public override void OnAction()
+    {
+        Control.PerformTransition(eTransition.MoveToAttack);
+    }
+
     public override void OnExit(out object _send)
     {
         _send = StateID;
@@ -23,6 +28,6 @@ public class MoveState : BaseState
 
     public override void OnDrive()
     {
-        Control.PerformTransition(eTransition.MoveToAttack);
+        
     }
 }

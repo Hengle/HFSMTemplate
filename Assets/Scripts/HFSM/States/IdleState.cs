@@ -5,7 +5,7 @@ using UnityEngine;
 public class IdleState : BaseState
 {
 
-    private void Start()
+    public override void OnStart()
     {
         StateID = eStateID.Idle;
         AddTransition(eTransition.IdleToMove, eStateID.Move);
@@ -15,6 +15,10 @@ public class IdleState : BaseState
     {
         base.OnEnter();
     }
+    public override void OnAction()
+    {
+         Control.PerformTransition(eTransition.IdleToMove);
+    }
 
     public override void OnExit(out object _send)
     {
@@ -23,6 +27,6 @@ public class IdleState : BaseState
 
     public override void OnDrive()
     {
-        Control.PerformTransition(eTransition.IdleToMove);
+       
     }
 }

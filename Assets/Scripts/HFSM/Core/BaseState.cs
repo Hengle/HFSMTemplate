@@ -5,7 +5,8 @@ using UnityEngine;
 public enum eStateID
 {
     //State
-    Idle = 0,
+    Null = 0,
+    Idle,
     Move,
     Attack,
 
@@ -36,9 +37,7 @@ public abstract class BaseState : MonoBehaviour
     /// </summary>
     public eStateID StateID { get; set; }
 
-    public BaseStateControl Control { get; set; }
-
-    
+    public StateControl Control { get; set; }
 
     Dictionary<eTransition, eStateID> StateDic = new Dictionary<eTransition, eStateID>();
 
@@ -63,8 +62,10 @@ public abstract class BaseState : MonoBehaviour
             return StateDic[trans];
         }
         Debug.LogFormat("GetStateIDByTrans---> {0} {1}", StateID, trans);
-        return eStateID.Idle;
+        return eStateID.Null;
     }
+
+    public abstract void OnStart();
 
     public virtual void OnEnter() { }
     //接收上一个状态的信息

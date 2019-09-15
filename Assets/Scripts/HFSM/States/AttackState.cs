@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class AttackState : BaseState
 {
-    BaseStateControl childStateControl = null;
-    private void Start()
+    //StateControl childStateControl = null;
+    public override void OnStart()
     {
         StateID = eStateID.Attack;
-
-        childStateControl = gameObject.AddComponent<NodeStateControl>();
-        childStateControl.enabled = false;
+        //childStateControl = GetComponent<StateControl>();
+        //childStateControl.enabled = false;
     }
     public override void OnEnter(in object _receive)
     {
         Debug.Log("CurState is <color=red>" + StateID + "</color>, The last state I received was " + "<color=red>" + _receive + "</color>");
-        childStateControl.enabled = true;
+        //childStateControl.enabled = true;
         //分享数据给子状态机控制器
-        NodeStateControl.SharedData = "This data is <color=red>" + StateID + "</color> to ";
+        StateControl.SharedData = "This data is <color=red>" + StateID + "</color> to ";
 
-        NodeStateControl.ReceivedAction = new System.Action<object>(ABC);
+        StateControl.ReceivedAction = new System.Action<object>(ABC);
     }
 
     public override void OnExit(out object _send)
     {
         _send = null;
-        childStateControl.enabled = false;
+        //childStateControl.enabled = false;
     }
 
     public override void OnUpdate()
